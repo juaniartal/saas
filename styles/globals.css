@@ -1,26 +1,102 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8fb;
+  --foreground: #0f172a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1020;
+    --foreground: #e5e7eb;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle dotted grid used behind hero sections */
+.bg-grid {
+  background-image: radial-gradient(rgb(100 116 139 / 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Blinking caret shown while the model is streaming */
+.streaming-caret::after {
+  content: "";
+  display: inline-block;
+  width: 0.5ch;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* react-datepicker: make the input fill its container and fit dark mode */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .react-datepicker {
+    background: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+  }
+  .react-datepicker__header {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    color: #e5e7eb;
+  }
+  .react-datepicker__day:hover {
+    background: #374151;
+  }
+  .react-datepicker__day--disabled {
+    color: #4b5563;
+  }
+}
+
+/* Print only the generated report */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+  #print-area {
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+  }
+  .no-print {
+    display: none !important;
+  }
 }

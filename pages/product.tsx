@@ -87,7 +87,7 @@ function ConsultationWorkspace() {
     };
 
     try {
-      await fetchEventSource('/api', {
+      await fetchEventSource('/api/consultation', {
         signal: controller.signal,
         method: 'POST',
         // Without this the library closes and re-sends the request when the tab is hidden.

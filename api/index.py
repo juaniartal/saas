@@ -64,6 +64,7 @@ def has_plan(claims: dict, plan: str) -> bool:
 
 
 @app.post("/api")
+@app.post("/api/consultation")  # same path as the AWS server (api/server.py)
 def consultation_summary(
     visit: Visit,
     creds: HTTPAuthorizationCredentials = Depends(clerk_guard),

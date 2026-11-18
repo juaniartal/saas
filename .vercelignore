@@ -1,0 +1,6 @@
+# Only used by the AWS Docker image; keep it from becoming a second Vercel function
+api/server.py
+Dockerfile
+.dockerignore
+.env
+.env.*

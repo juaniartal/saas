@@ -1,0 +1,15 @@
+node_modules
+.next
+.env
+.env.local
+.git
+.gitignore
+README.md
+.DS_Store
+*.log
+.vercel
+dist
+build
+# Local build output and Python cache (the image builds its own)
+out
+__pycache__
